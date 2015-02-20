@@ -23,13 +23,15 @@ public class executeGetAllStory {
 
            // JSONObject jsonObject = new JSONObject(rawStoryData);
 
-            JSONArray allstroyArray = rawStory.getJSONArray("");
+            JSONArray allstoryArray = new JSONArray(rawStoryData);
 
-            for (int i =0; i < allstroyArray.length(); i++) {
+            //JSONArray allstroyArray = rawStory.getJSONArray("");
+
+            for (int i =0; i < allstoryArray.length(); i++) {
 
                 AllStories story = new AllStories();
 
-                JSONObject jsonStory = allstroyArray.getJSONObject(i);
+                JSONObject jsonStory = allstoryArray.getJSONObject(i);
 
                 String tag = jsonStory.getString("tag");
                 story.setTag(tag);
