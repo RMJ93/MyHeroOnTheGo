@@ -21,11 +21,7 @@ public class executeGetAllStory {
 
             String rawStoryData = getrequest.request(URL);
 
-           // JSONObject jsonObject = new JSONObject(rawStoryData);
-
             JSONArray allstoryArray = new JSONArray(rawStoryData);
-
-            //JSONArray allstroyArray = rawStory.getJSONArray("");
 
             for (int i =0; i < allstoryArray.length(); i++) {
 

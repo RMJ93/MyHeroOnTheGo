@@ -31,18 +31,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    TextView httpStuff;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.httpex);
-        //httpStuff = (TextView) findViewById(R.id.tvHttp);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         SearchAllStory sas = new SearchAllStory();
         sas.execute();
-        //setContentView(R.layout.activity_main); populateListView();
         //registerClickCallback();
     }
 
@@ -61,9 +56,8 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(ArrayList<AllStories> allStories) {
             ArrayAdapter<AllStories> storyAdapter = new ArrayAdapter<AllStories>(MainActivity.this, android.R.layout.simple_list_item_1, allStories);
-            setContentView(R.layout.activity_main); populateListView(storyAdapter);
-            //setListAdapter(storyAdapter);
             setProgressBarIndeterminateVisibility(false);
+            setContentView(R.layout.activity_main); populateListView(storyAdapter);
         }
         @Override
         protected void onPreExecute() {
@@ -75,13 +69,7 @@ public class MainActivity extends Activity {
 
 
     private void populateListView(ArrayAdapter<AllStories> a) {
-// Create list of items
-       // String[] myItems = {"Blue", "Green", "Purple", "Red"}; // Build Adapter
-// TODO: CHANGE THE [[ to a less than, ]] to greater than.
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.da_item, myItems);
-
         ListView list = (ListView) findViewById(R.id.listViewMain);
-        //list.setAdapter(adapter);
         list.setAdapter(a);
     }
 /*
