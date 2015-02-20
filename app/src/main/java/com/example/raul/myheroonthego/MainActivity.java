@@ -30,18 +30,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         SearchAllStory sas = new SearchAllStory();
         sas.execute();
-        //registerClickCallback();
     }
-
-
 
     class SearchAllStory extends AsyncTask<String, Integer, ArrayList<AllStories>> {
 
@@ -57,7 +52,9 @@ public class MainActivity extends Activity {
         protected void onPostExecute(ArrayList<AllStories> allStories) {
             ArrayAdapter<AllStories> storyAdapter = new ArrayAdapter<AllStories>(MainActivity.this, android.R.layout.simple_list_item_1, allStories);
             setProgressBarIndeterminateVisibility(false);
-            setContentView(R.layout.activity_main); populateListView(storyAdapter);
+            setContentView(R.layout.activity_main);
+            registerClickCallback();
+            populateListView(storyAdapter);
         }
         @Override
         protected void onPreExecute() {
@@ -66,23 +63,37 @@ public class MainActivity extends Activity {
 
     }
 
-
-
     private void populateListView(ArrayAdapter<AllStories> a) {
         ListView list = (ListView) findViewById(R.id.listViewMain);
         list.setAdapter(a);
     }
-/*
+
     private void registerClickCallback() {
         ListView list = (ListView) findViewById(R.id.listViewMain);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
-// TODO: CHANGE THE [[ to a less than, ]] to greater than.
             public void onItemClick(AdapterView<?> paret, View viewClicked, int position, long id) {
                 TextView textView = (TextView) viewClicked;
-                String message = "You clicked # " + position + ", which is string: " + textView.getText().toString();
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                String message ="Which is string: " + textView.getText().toString();
+                String tosplit = textView.getText().toString();
+                //Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                if (textView.getText().toString().contains("~")) {
+                    String[] parts = tosplit.split("~");
+                    String tag = parts[0];
+                    if (tag.contains(":")) {
+                        String[] xparts = tag.split(":");
+                        String tag2 = xparts[1];
+                        Toast.makeText(MainActivity.this, tag2.trim(), Toast.LENGTH_LONG).show();
+                    }
+                    else {
+
+                    }
+                }
+                else {
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                }
             }
         });
-    }*/
+    }
 }

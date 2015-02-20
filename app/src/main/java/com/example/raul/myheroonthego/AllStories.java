@@ -14,6 +14,7 @@ public class AllStories implements Serializable {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
     public String getType() {
         return type;
     }
@@ -35,8 +36,7 @@ public class AllStories implements Serializable {
      */
     @Override
     public String toString() {
-// TODO Auto-generated method stub
-        return tag + " " + type + " " + description;
+        return "Tag: " + tag  + "~ Type: " + type + "~ Description: " + description;
     }
 
 
